@@ -19,6 +19,7 @@
 #ifndef CCACHE_SYSTEM_H
 #define CCACHE_SYSTEM_H
 
+#undef _XOPEN_SOURCE
 #include "config.h"
 
 #include <sys/file.h>

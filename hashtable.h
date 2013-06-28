@@ -32,6 +32,7 @@
 #ifndef __HASHTABLE_CWC22_H__
 #define __HASHTABLE_CWC22_H__
 
+#undef _XOPEN_SOURCE
 #include "config.h"
 
 struct hashtable;

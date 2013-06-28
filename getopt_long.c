@@ -32,6 +32,7 @@
  * SUCH DAMAGE.
  */
 
+#undef _XOPEN_SOURCE
 #include "config.h"
 
 #ifndef HAVE_GETOPT_LONG

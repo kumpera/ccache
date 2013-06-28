@@ -165,6 +165,7 @@
  */
 
 #if HAVE_CONFIG_H
+#undef _XOPEN_SOURCE
 #include <config.h>
 #endif	/* HAVE_CONFIG_H */
 
