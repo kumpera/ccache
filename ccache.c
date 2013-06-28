@@ -1546,7 +1546,7 @@ cc_process_args(struct args *args, struct args **preprocessor_args,
 	int i;
 	bool found_c_opt = false;
 	bool found_S_opt = false;
-	bool found_arch_opt = false;
+	char *found_arch_opt = NULL;
 	bool found_pch = false;
 	bool found_fpch_preprocess = false;
 	const char *explicit_language = NULL; /* As specified with -x. */
@@ -1632,13 +1632,15 @@ cc_process_args(struct args *args, struct args **preprocessor_args,
 
 		/* Multiple -arch options are too hard. */
 		if (str_eq(argv[i], "-arch")) {
-			if (found_arch_opt) {
-				cc_log("More than one -arch compiler option is unsupported");
+			if (!found_arch_opt)
+				found_arch_opt = argv [i + 1];
+			else if (strcmp (found_arch_opt, argv [i + 1])) {
+				cc_log("Multiple -arch compiler options with different values '%s' x '%s' is unsupported", found_arch_opt, argv [i + 1]);
 				stats_update(STATS_UNSUPPORTED);
 				result = false;
 				goto out;
 			} else {
-				found_arch_opt = true;
+				found_arch_opt = argv [i + 1];
 			}
 		}
 
